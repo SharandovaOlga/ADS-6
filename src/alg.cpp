@@ -1,9 +1,14 @@
 // Copyright 2021 NNTU-CS
+#include  <iostream>
+#include  <fstream>
+#include  <locale>
+#include  <cstdlib>
+#include  "bst.h"
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 template <typename T>
 class BST {
-  public:
+   public:
   struct Node {
     T value;
     int count;
@@ -11,7 +16,7 @@ class BST {
     Node* right;
   };
 
-  private:
+   private:
   Node* root;
   Node* addNode(Node* root, T value) {
     if (root == nullptr) {
@@ -33,7 +38,7 @@ class BST {
       return 0;
     if (root->left == nullptr && root->right == nullptr)
       return 0;
-   int lh = depthTree(root->left), rh = depthTree(root->right);
+    int lh = depthTree(root->left), rh = depthTree(root->right);
     return (lh > rh ? lh : rh) + 1;
   }
   int searchNode(Node* root, T value) {
@@ -47,7 +52,7 @@ class BST {
       return root->count;
   }
 
-  public:
+   public:
   BST() :root(nullptr) {}
   ~BST() {}
   void add(T value) {
