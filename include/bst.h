@@ -2,19 +2,19 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <cassert>
-template <typename T>
+template < typename T >
 class BST {
  public:
-   structNode {
- T value;
+  struct Node {
+  T value;
   int c;
- Node* left;
- Node* right;
+  Node* left;
+  Node* right;
   };
 BST(): root(nullptr) {}
 ~BST() {}
 void add(T value) {
- root = addNode(root, value);
+  root = addNode(root, value);
 }
 int depth() {
   return depthTree(root);
@@ -27,16 +27,16 @@ int search(T value) {
 Node* root;
 Node* addNode(Node* root, T value) {
         if (root == nullptr) {
- root = new Node;
- root-> value = value;
- root-> c = 1;
- root-> left = root-> right = nullptr;
- } else if (root-> value > value) {
- root-> left = addNode(root-> left, value);
- } else if (root-> value < value) {
- root-> right = addNode(root-> right, value);
- } else {
- root->c++;
+            root = new Node;
+            root-> value = value;
+            root-> c = 1;
+            root-> left = root-> right = nullptr;
+        } else if (root-> value > value) {
+             root-> left = addNode(root-> left, value);
+        } else if (root-> value < value) {
+             root-> right = addNode(root-> right, value);
+        } else {
+             root->c++;
         }
         return root;
 }
@@ -61,4 +61,5 @@ else
     return root->c;
 }
 };
-#endif // INCLUDE_BST_H_
+
+#endif  // INCLUDE_BST_H_
