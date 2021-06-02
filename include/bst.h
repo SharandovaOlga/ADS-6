@@ -29,23 +29,27 @@ class BST {
       }
       return root;
    }
-   int depthTree(Node* root) {
-      if (root == nullptr)
-         return 0;
-      if (root->left == nullptr && root->right == nullptr)
-         return 0;
-      int lh = depthTree(root->left), rh = depthTree(root->right);
-      return (lh > rh ? lh : rh) + 1;
-   }
-  int searchNode(Node* root, T value) {
+   int depthTree(Node *root) {
     if (root == nullptr)
       return 0;
-    else if (root->value > value)
-      return searchNode(root->left, value);
-    else if (root->value < value)
-      return searchNode(root->right, value);
-    else
-      return root->count;
+    if (root->left == nullptr && root->right == nullptr)
+      return 0;
+    int lh = depthTree(root->left);
+    int rh = depthTree(root->right);
+    return lh > rh ? lh + 1 : rh + 1;
+  }
+  int searchNode(Node *root, T value) {
+    Node *t = root;
+    if (root == nullptr) {
+      return 0;
+    } else {
+      if (root->value == value)
+        return root->count;
+      else if (root->value < value)
+        return searchNode(root->right, value);
+      else
+        return searchNode(root->left, value);
+    }
   }
 
    public:
