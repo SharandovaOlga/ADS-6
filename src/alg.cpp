@@ -3,20 +3,29 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  std::string word = "";
   std::ifstream file(filename);
-  BST<std::string>tree;
+  BST<std::string> tree;
+  std::string word, line;
   while (!file.eof()) {
-    char ch = file.get();
-    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
-      if (ch >= 'A' && ch <= 'Z')
-        ch += 32;
-      word += ch;
-    } else if (word != "") {
-      tree.add(word);
-      word = "";
+    file >> word;
+    int i = 0;
+    while (i < word.length()) {
+      int k = 0;
+      while ((word[i] >= 'a' && word[i] <= 'z' ||
+              word[i] >= 'A' && word[i] <= 'Z') && i < word.length()) {
+        if (word[i] >= 'A' && word[i] <= 'Z')
+          word[i] += 32;
+        line += word[i];
+        k++;
+        i++;
+      }
+      if (k != 0) {
+        tree.add(line);
+        line = "";
+      } else {
+        i++;
+      }
     }
   }
-  file.close();
   return tree;
 }
